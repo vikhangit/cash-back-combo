@@ -23,7 +23,9 @@ export default function HomePage() {
   const [selectedDistrict, setSelectedDistrict] = useState();
   const [ward, setWard] = useState([]);
   const [selectedWard, setSelectedWard] = useState([]);
-  const [referralCode, setReferralCode] = useState([]);
+  const [giam_doc, setGiam_Doc] = useState("");
+  const [tuyen_tren, setTuyenTren] = useState("");
+  const [referralCode, setReferralCode] = useState("");
   const [combo, setCombo] = useState(0);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -89,6 +91,8 @@ export default function HomePage() {
       phuong_xa: selectedWard?.ward_name,
       address: street || "",
       exfields: {
+        giam_doc: giam_doc,
+        tuyen_tren: tuyen_tren,
         image: imageUrl || "",
       },
     };
@@ -96,7 +100,7 @@ export default function HomePage() {
     if (referralCode.length < 9 || referralCode.length > 12) {
       Swal.fire({
         title: "Lỗi",
-        text: `Mã giới thiệu phải từ 9 đến 12 ký tự`,
+        text: `Sô cccd người bán từ 9 đến 12 ký tự`,
         icon: "error",
         showCancelButton: false,
         confirmButtonColor: "rgb(79 70 229)",
@@ -105,7 +109,7 @@ export default function HomePage() {
     } else if (identityCard.length < 9 || identityCard.length > 12) {
       Swal.fire({
         title: "Lỗi",
-        text: `Chứng minh nhân dân phải từ 9 đến 12 ký tự`,
+        text: `Sô cccd người mua phải từ 9 đến 12 ký tự`,
         icon: "error",
         showCancelButton: false,
         confirmButtonColor: "rgb(79 70 229)",
@@ -175,30 +179,19 @@ export default function HomePage() {
           try {
             if (res.status === 200) {
               setInfo(res.data);
-              Swal.fire({
-                title: "Đặt hàng thành công",
-                text: `Xin chúc mừng bạn đặt hàng thành công`,
-                icon: "success",
-                showCancelButton: false,
-                confirmButtonColor: "rgb(79 70 229)",
-                cancelButtonColor: "red",
-                cancelButtonText: "Hủy bỏ",
-                confirmButtonText: "Xác nhận",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  // handleOpenCheck();
-                  setCombo(0);
-                  setReferralCode("");
-                  setName("");
-                  setPhone("");
-                  setIdentityCard("");
-                  setSelected();
-                  setSelectedDistrict();
-                  setSelectedWard();
-                  setStreet("");
-                  setImageUrl("")
-                }
-              });
+              handleOpenCheck();
+              setCombo(0);
+              setReferralCode("");
+              setName("");
+              setPhone("");
+              setIdentityCard("");
+              setSelected();
+              setSelectedDistrict();
+              setSelectedWard();
+              setStreet("");
+              setImageUrl("");
+              setGiam_Doc("");
+              setTuyenTren("");
             } else {
               Swal.fire({
                 title: "Đặt hàng thất bại",
@@ -261,10 +254,36 @@ export default function HomePage() {
       >
         <div className="my-3">
           <input
+            id="giam_doc"
+            name="giam_doc"
+            type="text"
+            placeholder="Trực thuộc giám đốc nào"
+            // autoComplete="email"
+            value={giam_doc}
+            onChange={(e) => setGiam_Doc(e.target.value)}
+            required
+            className="block w-full rounded-md border-0 px-6 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2  focus:outline-0focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+        <div className="my-3">
+          <input
+            id="tuyen tren"
+            name="tuyen tren"
+            type="text"
+            placeholder="Tuyến trên trực tiếp"
+            // autoComplete="email"
+            value={tuyen_tren}
+            onChange={(e) => setTuyenTren(e.target.value)}
+            required
+            className="block w-full rounded-md border-0 px-6 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2  focus:outline-0focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+        <div className="my-3">
+          <input
             id="referralCode"
             name="referralCode"
             type="text"
-            placeholder="Mã giới thiệu"
+            placeholder="Số cccd người bán"
             // autoComplete="email"
             value={referralCode}
             onChange={(e) => setReferralCode(e.target.value)}
@@ -329,7 +348,7 @@ export default function HomePage() {
             value={identityCard}
             // autoComplete="email"
             onChange={(e) => setIdentityCard(e.target.value)}
-            placeholder="Chứng minh nhân dân"
+            placeholder="Số cccd người mua"
             required
             className="block w-full rounded-md border-0 px-6 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
@@ -594,8 +613,8 @@ export default function HomePage() {
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
-      {/* <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} /> */}
-    <Infomation setImage={setImageUrl} image={imageUrl} />
+      <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
+      <Infomation setImage={setImageUrl} image={imageUrl} />
     </div>
   );
 }
