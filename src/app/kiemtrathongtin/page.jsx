@@ -9,9 +9,9 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-const GeneratePDF = dynamic(() => import("../../components/GeneratePdf"), {
-  ssr: false,
-});
+// const GeneratePDF = dynamic(() => import("../../components/GeneratePdf"), {
+//   ssr: false,
+// });
 
 export default function KTTK() {
   const ref = React.useRef();
