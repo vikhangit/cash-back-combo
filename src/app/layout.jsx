@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider>
-        <div className='px-10 py-10'>{children}</div>
+        <div className='px-10'>{children}</div>
         </ThemeProvider>
       </body>
     </html>

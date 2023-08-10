@@ -80,10 +80,8 @@ export default function HomePage() {
   const postData = async (e) => {
     e.preventDefault();
     const data = {
-      ma_gio_thieu: referralCode,
       name: name || "",
       phone: phone || "",
-      cmnd: identityCard || "",
       combo: combo,
       trang_thai: "0",
       tinh_thanh: selected?.province_name || "",
@@ -94,6 +92,8 @@ export default function HomePage() {
         giam_doc: giam_doc,
         tuyen_tren: tuyen_tren,
         image: imageUrl || "",
+        cmnd: identityCard || "",
+        ma_gio_thieu: referralCode,
       },
     };
     console.log(data);
@@ -179,7 +179,8 @@ export default function HomePage() {
           try {
             if (res.status === 200) {
               setInfo(res.data);
-              handleOpenCheck();
+              localStorage.setItem("data", JSON.stringify(res.data));
+              router.push("/kiemtrathongtin")
               setCombo(0);
               setReferralCode("");
               setName("");
@@ -283,7 +284,7 @@ export default function HomePage() {
             id="referralCode"
             name="referralCode"
             type="text"
-            placeholder="Số cccd người bán"
+            placeholder="Mã giới thiệu (Số cccd người bán)"
             // autoComplete="email"
             value={referralCode}
             onChange={(e) => setReferralCode(e.target.value)}
@@ -613,7 +614,8 @@ export default function HomePage() {
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
-      <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
+      {/* <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} /> */}
+
       <Infomation setImage={setImageUrl} image={imageUrl} />
     </div>
   );

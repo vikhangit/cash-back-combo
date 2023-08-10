@@ -7,28 +7,36 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import Image from "next/image";
+import Image from "next/image"
+import dynamic from "next/dynamic";
+const GeneratePDF = dynamic(() => import("../../components/GeneratePdf"), {
+  ssr: false,
+});
  
 export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
+   
+const ref = React.useRef();
   console.log(combo)
   return (
     <>
       <Dialog
+        ref={ref}
         size="lg"
-        open={open}
+        id="text"
+        open={true}
         handler={handleOpen}
         className="overflow-scroll h-5/6"
       >
         <DialogBody className="relaive w-full">
           <Image
             alt=""
-            src={`/image/tt${combo}.jpg`}
+            src={`/image/tt${1}.jpg`}
             width={0}
             height={0}
             sizes="100vw"
             style={{
               width: "100%",
-              height: "auto",
+              height: "100vh",
             }}
           />
           <div className="absolute top-10 sm:top-8 lg:top-6 md:translate-y-1/2 left-1/2 -translate-x-1/2 w-10/12 md:w-1/2">
@@ -45,19 +53,7 @@ export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
             </div>
           </div>
         </DialogBody>
-        {/* <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Bỏ qua</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={() =>{}}>
-            <span>Tải về</span>
-          </Button>
-        </DialogFooter> */}
+         <GeneratePDF html={ref} close={handleOpen}/>
       </Dialog>
     </>
   );
