@@ -1,9 +1,12 @@
+"use client"
 import { Button, DialogFooter } from '@material-tailwind/react'
 import { jsPDF, HTMLOptionImage } from "jspdf";
 import { toPng, toCanvas } from "html-to-image";
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 export default function GeneratePdf({html, close}) {
+    const router = useRouter()
     const generatePdf = () => {
       const doc = new jsPDF();
 
@@ -27,8 +30,8 @@ export default function GeneratePdf({html, close}) {
     };
   return (
     <DialogFooter>
-      <Button variant="text" color="red" onClick={close} className="mr-1">
-        <span>Bỏ qua</span>
+      <Button variant="text" color="red" onClick={() => router.back()} className="mr-1">
+        <span>Về tran đạt hăng</span>
       </Button>
       <Button variant="gradient" color="green" onClick={generateImage}>
         <span>Tải về</span>
