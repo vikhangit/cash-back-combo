@@ -45,6 +45,19 @@ export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
             </div>
           </div>
         </DialogBody>
+        {/* <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Bỏ qua</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={() =>{}}>
+            <span>Tải về</span>
+          </Button>
+        </DialogFooter> */}
       </Dialog>
     </>
   );

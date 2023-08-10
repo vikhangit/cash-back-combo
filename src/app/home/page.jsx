@@ -22,7 +22,7 @@ export default function HomePage() {
   const [district, setDistrict] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState();
   const [ward, setWard] = useState([]);
-  const [selectedWard, setSelectedWard] = useState([]);
+  const [selectedWard, setSelectedWard] = useState();
   const [giam_doc, setGiam_Doc] = useState("");
   const [tuyen_tren, setTuyenTren] = useState("");
   const [referralCode, setReferralCode] = useState("");
