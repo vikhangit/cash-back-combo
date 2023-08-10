@@ -21,7 +21,7 @@ export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
         <DialogBody className="relaive w-full">
           <Image
             alt=""
-            src={`/image/tt${combo === 1 ? "1" : "2"}.jpg`}
+            src={`/image/tt${combo}.jpg`}
             width={0}
             height={0}
             sizes="100vw"
