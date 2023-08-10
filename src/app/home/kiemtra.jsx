@@ -39,7 +39,7 @@ export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
             <div className="mt-2 bg-white w-full py-1 xl:py-2.5 px-3 xl:px-6 rounded-md">
               <p className="text-black">Số điện thoại: {phone}</p>
             </div>
-            <div className="mt-2 bg-white w-full py-1 xl:py-2.5 h-auto  px-3 xl:px-6lg:h-20 xl:h-28 2xl:h-32 rounded-md">
+            <div className="mt-2 bg-white w-full py-1 xl:py-2.5 h-auto  px-3 xl:px-6 lg:h-20 xl:h-28 2xl:h-32 rounded-md">
               <p className="text-black">Địa chỉ: {address}</p>
             </div>
           </div>
