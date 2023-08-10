@@ -21,11 +21,14 @@ const ref = React.useRef();
     <>
       <Dialog
         ref={ref}
-        size="lg"
-        id="text"
+        size="md"
         open={true}
         handler={handleOpen}
-        className="overflow-scroll h-5/6"
+        className="overflow-scroll"
+        style={{
+          height: "100vh",
+          width: "100%"
+        }}
       >
         <DialogBody className="relaive w-full">
           <Image
@@ -39,16 +42,16 @@ const ref = React.useRef();
               height: "100vh",
             }}
           />
-          <div className="absolute top-10 sm:top-8 lg:top-6 md:translate-y-1/2 left-1/2 -translate-x-1/2 w-10/12 md:w-1/2">
-            <div className="bg-white w-full py-1 xl:py-2.5 px-3 xl:px-6 rounded-md">
+          <div className="absolute top-12 sm:top-14 lg:top-14 xl:top-8 left-1/2 translate-y-1/2  -translate-x-1/2 w-3/4 xl:w-1/2">
+            <div className="bg-white w-full py-1 px-3  rounded-md">
               <p className="text-black">
                 Khách hàng: <span className="uppercase">{name}</span>
               </p>
             </div>
-            <div className="mt-2 bg-white w-full py-1 xl:py-2.5 px-3 xl:px-6 rounded-md">
+            <div className="mt-2 bg-white w-full py-1 px-3 rounded-md">
               <p className="text-black">Số điện thoại: {phone}</p>
             </div>
-            <div className="mt-2 bg-white w-full py-1 xl:py-2.5 h-auto  px-3 xl:px-6 lg:h-20 xl:h-28 2xl:h-32 rounded-md">
+            <div className="mt-2 bg-white w-full py-1 h-auto  px-3 rounded-md h-16 xl:h-auto">
               <p className="text-black">Địa chỉ: {address}</p>
             </div>
           </div>
