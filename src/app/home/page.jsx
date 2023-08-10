@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
@@ -9,6 +9,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { DialogDefault } from "./kiemtra";
+import validator from "validator"; 
+import Infomation from "./infomation";
 const provinceApi = "https://vapi.vnappmob.com/api/province";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -28,9 +30,10 @@ export default function HomePage() {
   const [identityCard, setIdentityCard] = useState("");
   const [street, setStreet] = useState("");
   const [openCheck, setOpenCheck] = React.useState(false);
- const [info, setInfo] = useState([]);
-  const handleOpenCheck = () => setOpenCheck(!openCheck)
-  const router = useRouter()
+  const [info, setInfo] = useState([]);
+  const handleOpenCheck = () => setOpenCheck(!openCheck);
+  const [imageUrl, setImageUrl] = useState("");
+  const router = useRouter();
   const getProvinceData = async () => {
     try {
       const res = await axios.get(`${provinceApi}`);
@@ -68,6 +71,10 @@ export default function HomePage() {
       console.log(e);
     }
   };
+  const validatePhoneNumber = (number) => {
+    const isValidPhoneNumber = validator.isMobilePhone(number);
+    return isValidPhoneNumber;
+  };
   const postData = async (e) => {
     e.preventDefault();
     const data = {
@@ -81,9 +88,75 @@ export default function HomePage() {
       quan_huyen: selectedDistrict?.district_name || "",
       phuong_xa: selectedWard?.ward_name,
       address: street || "",
+      exfields: {
+        image: imageUrl || "",
+      },
     };
     console.log(data);
-    if (selected && selectedDistrict && selectedWard) {
+    if (referralCode.length < 9 || referralCode.length > 12) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Mã giới thiệu phải từ 9 đến 12 ký tự`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (identityCard.length < 9 || identityCard.length > 12) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Chứng minh nhân dân phải từ 9 đến 12 ký tự`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (combo == 0) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Bạn chưa chọn combo`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (phone.length < 10 || identityCard.length > 12) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Số điện thoại phải có ít nhất 10 ký tự`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (!validatePhoneNumber(phone)) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Số điện thoại không hợp lệ`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (!selected || !selectedDistrict || !selectedWard) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Bạn chưa chọn địa chỉ. Vui lòng chọn địa chỉ đầy đủ bao gồm tỉnh/thành phố, quận huyện, phường/xã`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else if (imageUrl.length <= 0) {
+      Swal.fire({
+        title: "Lỗi",
+        text: `Bạn chưa cập nhật ảnh chụp hóa đơn thanh toán`,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "rgb(79 70 229)",
+        confirmButtonText: "Xác nhận",
+      });
+    } else {
       Swal.fire({
         title: "Xác nhận đặt hàng",
         text: `Bạn có chắc chắn đặt hàng với comobo ${combo} không?`,
@@ -96,68 +169,50 @@ export default function HomePage() {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const res = await axios.post(
-        `https://api.fostech.vn/api/625df20a02f00e19239e8b89/ordercombo?access_token=flex.public.token`,
-        data
-      );
-           try {
-        if (res.status === 200) {
-         setInfo(res.data);
-          Swal.fire({
-            title: "Đặt hàng thành công",
-            text: `Xin chúc mừng bạn đặt hàng thành công`,
-            icon: "success",
-            showCancelButton: false,
-            confirmButtonColor: "rgb(79 70 229)",
-            cancelButtonColor: "red",
-            cancelButtonText: "Hủy bỏ",
-            confirmButtonText: "Xác nhận",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              handleOpenCheck();
-              setCombo(0);
-              setReferralCode("");
-              setName("");
-              setPhone("");
-              setIdentityCard("");
-              setSelected();
-              setSelectedDistrict();
-              setSelectedWard();
-              setStreet("");
+            `https://api.fostech.vn/api/625df20a02f00e19239e8b89/ordercombo?access_token=flex.public.token`,
+            data
+          );
+          try {
+            if (res.status === 200) {
+              setInfo(res.data);
+              Swal.fire({
+                title: "Đặt hàng thành công",
+                text: `Xin chúc mừng bạn đặt hàng thành công`,
+                icon: "success",
+                showCancelButton: false,
+                confirmButtonColor: "rgb(79 70 229)",
+                cancelButtonColor: "red",
+                cancelButtonText: "Hủy bỏ",
+                confirmButtonText: "Xác nhận",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // handleOpenCheck();
+                  setCombo(0);
+                  setReferralCode("");
+                  setName("");
+                  setPhone("");
+                  setIdentityCard("");
+                  setSelected();
+                  setSelectedDistrict();
+                  setSelectedWard();
+                  setStreet("");
+                  setImageUrl("")
+                }
+              });
+            } else {
+              Swal.fire({
+                title: "Đặt hàng thất bại",
+                text: `Xin lỗi bạn dã đặt hàng thất bại. Vui lòng kiểm tra lại thông tin`,
+                icon: "error",
+                showCancelButton: false,
+                confirmButtonColor: "rgb(79 70 229)",
+                confirmButtonText: "Xác nhận",
+              });
             }
-          });  
-        } else {
-          Swal.fire({
-            title: "Đặt hàng thất bại",
-            text: `Xin lỗi bạn dã đặt hàng thất bại. Vui lòng kiểm tra lại thông tin`,
-            icon: "error",
-            showCancelButton: false,
-            confirmButtonColor: "rgb(79 70 229)",
-            confirmButtonText: "Xác nhận",
-          });
+          } catch (e) {
+            console.log(e);
+          }
         }
-      } catch (e) {
-        console.log(e);
-      }
-        }
-      })
-     
-    } else if (combo == 0) {
-      Swal.fire({
-        title: "Lỗi",
-        text: `Bạn chưa chọn combo`,
-        icon: "error",
-        showCancelButton: false,
-        confirmButtonColor: "rgb(79 70 229)",
-        confirmButtonText: "Xác nhận",
-      });
-    } else {
-      Swal.fire({
-        title: "Lỗi",
-        text: `Bạn chưa chọn địa chỉ. Vui lòng chọn đầy đủ điện chỉ tỉnh/thành phố, quân/huyện, phường/xã`,
-        icon: "error",
-        showCancelButton: false,
-        confirmButtonColor: "rgb(79 70 229)",
-        confirmButtonText: "Xác nhận",
       });
     }
   };
@@ -223,14 +278,14 @@ export default function HomePage() {
             name="combo"
             type="text"
             // autoComplete="email"
-            
+
             placeholder="Combo đã chọn"
             value={combo > 0 ? `Đã chọn combo ${combo}` : ""}
             onClick={() =>
               Swal.fire({
-                title: "Lỗi",
-                text: `Vui lòng ấn chọn vào hình của combo để chọn combo muốn đặ`,
-                icon: "error",
+                title: "",
+                text: `Vui lòng ấn chọn vào hình của combo để chọn combo muốn đặt`,
+                icon: "warning",
                 showCancelButton: false,
                 confirmButtonColor: "rgb(79 70 229)",
                 confirmButtonText: "Xác nhận",
@@ -539,7 +594,8 @@ export default function HomePage() {
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
-        <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
+      {/* <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} /> */}
+    <Infomation setImage={setImageUrl} image={imageUrl} />
     </div>
   );
 }
