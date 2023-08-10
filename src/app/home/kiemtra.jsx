@@ -22,7 +22,7 @@ const ref = React.useRef();
       <Dialog
         ref={ref}
         size="md"
-        open={true}
+        open={open}
         handler={handleOpen}
         className="overflow-scroll"
         style={{
