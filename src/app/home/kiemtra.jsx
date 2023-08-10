@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image"
 import dynamic from "next/dynamic";
-const GeneratePDF = dynamic(() => import("../../components/GeneratePdf"), {
+const GeneratePDF = dynamic(() => import("./../../components/GeneratePdf"), {
   ssr: false,
 });
  
