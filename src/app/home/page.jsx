@@ -539,7 +539,7 @@ export default function HomePage() {
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
-        <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.tinh_thanh}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
+        <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
     </div>
   );
 }
