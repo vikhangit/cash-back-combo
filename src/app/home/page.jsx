@@ -179,8 +179,7 @@ export default function HomePage() {
           try {
             if (res.status === 200) {
               setInfo(res.data);
-              localStorage.setItem("data", JSON.stringify(res.data));
-              router.push("/kiemtrathongtin")
+              handleOpenCheck()
               setCombo(0);
               setReferralCode("");
               setName("");
@@ -614,8 +613,7 @@ export default function HomePage() {
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
-      {/* <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} /> */}
-
+      <DialogDefault open={openCheck} handleOpen={handleOpenCheck} combo={info.combo} name={info.name} phone={info.phone} address={`${info.address}, ${info.phuong_xa}, ${info.tinh_thanh}`} />
       <Infomation setImage={setImageUrl} image={imageUrl} />
     </div>
   );

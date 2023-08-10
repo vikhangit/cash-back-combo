@@ -30,8 +30,8 @@ export default function GeneratePdf({html, close}) {
     };
   return (
     <DialogFooter>
-      <Button variant="text" color="red" onClick={() => router.back()} className="mr-1">
-        <span>Về tran đạt hăng</span>
+      <Button variant="text" color="red" onClick={close} className="mr-1">
+        <span>Bỏ qua</span>
       </Button>
       <Button variant="gradient" color="green" onClick={generateImage}>
         <span>Tải về</span>

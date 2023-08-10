@@ -51,7 +51,7 @@ export default function KTTK() {
             </div>
           </div>
         </div>
-        <GeneratePDF html={ref} close={() => {}} />
+        {/* <GeneratePDF html={ref} close={() => {}} /> */}
       </div>
     </>
   );
