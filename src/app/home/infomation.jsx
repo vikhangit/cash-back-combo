@@ -11,8 +11,8 @@ export default function Infomation() {
         <p className="text-lg">
           STK:<span className="font-semibold ml-1">10 3777 6888</span>
         </p>
-        <p className="text-lg text-rose-500 mt-8">*Nội dung chuyển tiền là:</p>
-        <p className="text-lg text-rose-500">
+        <p className="text-lg text-red-500 mt-8">*Nội dung chuyển tiền là:</p>
+        <p className="text-lg text-red-500">
           Nhập số CĂN CƯỚC CÔNG DÂN, ví dụ: 123456789012
         </p>
       </div>

@@ -167,7 +167,7 @@ export default function HomePage() {
     getDistrictData(selected?.province_id);
     getWardData(selectedDistrict?.district_id);
   }, [selected, selectedDistrict]);
-  console.log(name);
+  console.log(info);
   return (
     <div className="">
       <div className="grid grid-cols-2 gap-x-2">

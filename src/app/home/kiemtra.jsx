@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
  
 export function DialogDefault({open, handleOpen, combo, name, phone, address}) {
+  console.log(combo)
   return (
     <>
       <Dialog
