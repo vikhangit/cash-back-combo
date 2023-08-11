@@ -43,8 +43,8 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
         }}
       >
         <DialogBody className="relaive w-full" id="print">
-            {
-              combo?
+            {/* {
+              combo ?
                 <Image
                   alt="Đang tải hình..."
                   src={`/image/tt${combo}.jpg`}
@@ -55,9 +55,10 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
                     width: "100%",
                     height: "auto",
                   }}
-                /> : <Image
+                /> : 
+                <Image
                   alt="Đang tải hình..."
-                  src="/image/tt2.jpg"
+                  src=""
                   width={0}
                   height={0}
                   sizes="100vw"
@@ -66,7 +67,18 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
                     height: "auto",
                   }}
                 />
-            }
+            } */}
+            <Image
+                  alt="Đang tải hình..."
+                  src="/image/z4588314820873_c815add35fb557ce37c31933a73a2ae8.jpg"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                />
             <div className="absolute top-0 2xl:top-8 xl:top-14 lg:top-14 md:top-20 sm:top-14 left-1/2 translate-y-20 sm:translate-y-1/2  -translate-x-1/2 w-5/6 sm:w-2/3 md:w-2/3 lg:w-1/2">
               <div className="bg-white w-full py-1 px-3  rounded-md">
                 <p className="text-black text-xs lg:text-base">
