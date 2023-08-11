@@ -49,14 +49,14 @@ axios
   return (
     <div className="flex flex-wrap md:flex-nowrap gap-x-10 mt-10">
       <div className="w-full flex flex-col items-center md:basis-3/4 md:block">
-        <p className="text-lg underline font-medium">Thông tin chuyển khoản</p>
-        <h1 className="text-lg uppercase">Công ty cổ phần goodcharme</h1>
-        <h1 className="text-lg uppercase">Ngân hàng vietcombank</h1>
-        <p className="text-lg">
+        <p className="text-lg underline font-medium text-center md:text-left">Thông tin chuyển khoản</p>
+        <h1 className="text-lg uppercase text-center md:text-left">Công ty cổ phần goodcharme</h1>
+        <h1 className="text-lg uppercase text-center md:text-left">Ngân hàng vietcombank</h1>
+        <p className="text-lg text-center md:text-left">
           STK:<span className="font-semibold ml-1">10 3777 6888</span>
         </p>
-        <p className="text-lg text-red-500 mt-8">*Nội dung chuyển tiền là:</p>
-        <p className="text-lg text-red-500">
+        <p className="text-lg text-red-500 mt-8 text-center md:text-left">*Nội dung chuyển tiền là:</p>
+        <p className="text-lg text-red-500 text-center md:text-left">
           Nhập số CĂN CƯỚC CÔNG DÂN, ví dụ: 123456789012
         </p>
       </div>

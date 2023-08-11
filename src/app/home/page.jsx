@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { getProvinceData } from "@/lib/getProvince";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
@@ -215,7 +214,6 @@ export default function HomePage() {
     getDistrictData(selected?.province_id);
     getWardData(selectedDistrict?.district_id);
   }, [selected, selectedDistrict]);
-  console.log(info);
   return (
     <div className="">
       <div className="grid grid-cols-2 gap-x-2">
