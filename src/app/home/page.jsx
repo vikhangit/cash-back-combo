@@ -247,7 +247,7 @@ export default function HomePage() {
         />
       </div>
       <form
-        class="mt-10"
+        className="mt-10"
         onSubmit={(e) => {
           postData(e);
         }}

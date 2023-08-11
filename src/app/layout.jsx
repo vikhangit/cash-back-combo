@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@material-tailwind/react";
 
 const inter = Inter({ subsets: ['latin'] })
+const isBrowser = () => typeof window !== "undefined";
 
 // export const metadata = {
 //   title: 'Good Charme | Combo Hoàn Tiền',
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
+       {
+        isBrowser ?  <ThemeProvider>
         <div className='px-10'>{children}</div>
-        </ThemeProvider>
+        </ThemeProvider> : null
+       }
       </body>
     </html>
   );
