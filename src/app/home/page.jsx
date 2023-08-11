@@ -180,6 +180,7 @@ export default function HomePage() {
               setInfo(res.data);
               // handleOpenCheck()
               localStorage.setItem("orderInfo", JSON.stringify(res.data));
+              router.push("/thongbao")
               setCombo(0);
               setReferralCode("");
               setName("");
@@ -192,7 +193,7 @@ export default function HomePage() {
               setImageUrl("");
               setGiam_Doc("");
               setTuyenTren("");
-              router.push("/thongbao")
+              
             } else {
               Swal.fire({
                 title: "Đặt hàng thất bại",
