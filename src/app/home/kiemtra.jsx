@@ -70,7 +70,7 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
             } */}
             <Image
                   alt="Đang tải hình..."
-                  src="/image/z4588314820873_c815add35fb557ce37c31933a73a2ae8.jpg"
+                  src="/image/tt1.jpg"
                   width={0}
                   height={0}
                   sizes="100vw"

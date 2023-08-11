@@ -4,6 +4,7 @@ const nextConfig = {
     swcMinify: true,
      images: {
         domains: ["api.fostech.vn", "combohoantien.goodcharme.vn"]
+        path: '/_next/image'
     },
 }
 
