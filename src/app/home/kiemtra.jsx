@@ -34,7 +34,7 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
       <Dialog
         ref={ref}
         size="lg"
-        open={!open}
+        open={open}
         handler={handleOpen}
         className="overflow-scroll h-5/6"
         style={{

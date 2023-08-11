@@ -177,9 +177,9 @@ export default function HomePage() {
           );
           try {
             if (res.status === 200) {
-              // setInfo(res.data);
-              // handleOpenCheck()
-              localStorage.setItem("orderInfo", JSON.stringify(res.data));
+              setInfo(res.data);
+              handleOpenCheck()
+              // localStorage.setItem("orderInfo", JSON.stringify(res.data));
               setCombo(0);
               setReferralCode("");
               setName("");
@@ -192,7 +192,7 @@ export default function HomePage() {
               setImageUrl("");
               setGiam_Doc("");
               setTuyenTren("");
-              router.push("/thongbao")
+              // router.push("/thongbao")
             } else {
               Swal.fire({
                 title: "Đặt hàng thất bại",
