@@ -42,18 +42,12 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
           width: "100%",
         }}
       >
-        {loading && combo ? (
-          <div className="flex justify-center" disabled>
-            <Spinner color="blue" />
-            <span className="ml-1">Đang xử lý</span>
-          </div>
-        ) : (
-          <DialogBody className="relaive w-full" id="print">
+        <DialogBody className="relaive w-full" id="print">
             {
-              combo === "1" ?
+              combo?
                 <Image
                   alt="Đang tải hình..."
-                  src="/image/tt1.jpg"
+                  src={`/image/tt${combo}.jpg`}
                   width={0}
                   height={0}
                   sizes="100vw"
@@ -91,7 +85,6 @@ export function DialogDefault({ open, handleOpen, combo, name, phone, address })
               </div>
             </div>
           </DialogBody>
-        )}
         <DialogFooter>
           <Button
             variant="text"
