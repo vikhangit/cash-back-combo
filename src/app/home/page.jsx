@@ -7,9 +7,9 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { DialogDefault } from "./kiemtra";
 import validator from "validator"; 
 import Infomation from "./infomation";
+import { DialogDefault } from "./kiemtra";
 const provinceApi = "https://vapi.vnappmob.com/api/province";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -177,8 +177,9 @@ export default function HomePage() {
           );
           try {
             if (res.status === 200) {
-              setInfo(res.data);
-              handleOpenCheck()
+              // setInfo(res.data);
+              // handleOpenCheck()
+              localStorage.setItem("orderInfo", JSON.stringify(res.data));
               setCombo(0);
               setReferralCode("");
               setName("");
@@ -191,6 +192,7 @@ export default function HomePage() {
               setImageUrl("");
               setGiam_Doc("");
               setTuyenTren("");
+              router.push("/thongbao")
             } else {
               Swal.fire({
                 title: "Đặt hàng thất bại",
@@ -208,7 +210,6 @@ export default function HomePage() {
       });
     }
   };
-
   useEffect(() => {
     getProvinceData();
     getDistrictData(selected?.province_id);

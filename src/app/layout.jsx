@@ -2,6 +2,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@material-tailwind/react";
+import { NextUIProvider } from '@nextui-org/react'
 
 const inter = Inter({ subsets: ['latin'] })
 const isBrowser = () => typeof window !== "undefined";
@@ -15,11 +16,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-       {
-        isBrowser ?  <ThemeProvider>
-        <div className='px-10'>{children}</div>
-        </ThemeProvider> : null
-       }
+        {
+          isBrowser ?
+            <ThemeProvider>
+              <div className='px-10'>
+                <NextUIProvider>{children}</NextUIProvider></div>
+            </ThemeProvider> : null
+        }
       </body>
     </html>
   );
